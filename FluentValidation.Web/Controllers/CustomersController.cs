@@ -58,6 +58,14 @@ namespace FluentValidation.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Email,Age,BirthDay")] Customer customer)
         {
+            // we don't need this because we used RuleForEach in CustomerValidator.cs
+            //AddressValidator validationRules = new AddressValidator();
+
+            //customer.Addresses.ToList().ForEach(c =>
+            //{
+            //    validationRules.Validate(c);
+            //});
+
             //CustomerValidator customerValidator = new CustomerValidator(); => not good for performance
             //customerValidator.Validate(customer);
             var result = _customerValidator.Validate(customer);
