@@ -6,22 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.Web.Models;
+using FluentValidation.Web.FluentValidators;
 
 namespace FluentValidation.Web.Controllers
 {
     public class CustomersController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IValidator<Customer> _customerValidator;
 
-        public CustomersController(AppDbContext context)
+        public CustomersController(AppDbContext context, IValidator<Customer> customerValidator)
         {
             _context = context;
+            _customerValidator = customerValidator;
         }
 
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Customers.ToListAsync());
+            return View(await _context.Customers.ToListAsync());
         }
 
         // GET: Customers/Details/5
@@ -53,14 +56,19 @@ namespace FluentValidation.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Age")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Name,Email,Age,BirthDay")] Customer customer)
         {
-            if (ModelState.IsValid)
+            //CustomerValidator customerValidator = new CustomerValidator(); => not good for performance
+            //customerValidator.Validate(customer);
+            var result = _customerValidator.Validate(customer);
+
+            if (result.IsValid)
             {
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(customer);
         }
 
@@ -147,14 +155,14 @@ namespace FluentValidation.Web.Controllers
             {
                 _context.Customers.Remove(customer);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CustomerExists(int id)
         {
-          return _context.Customers.Any(e => e.Id == id);
+            return _context.Customers.Any(e => e.Id == id);
         }
     }
 }
