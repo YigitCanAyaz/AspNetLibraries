@@ -13,7 +13,8 @@ namespace AutoMapper.Web.Mapping
             CreateMap<Customer, CustomerDto>()
                 .ForMember(dest => dest.MyName, options => options.MapFrom(c => c.Name))
                 .ForMember(dest => dest.MyEmail, options => options.MapFrom(c => c.Email))
-                .ForMember(dest => dest.MyAge, options => options.MapFrom(c => c.Age));
+                .ForMember(dest => dest.MyAge, options => options.MapFrom(c => c.Age))
+                .ForMember(dest => dest.FullName, options => options.MapFrom(c => c.FullName2()));
             // CreateMap<CustomerDto, Customer>(); // converts customerdto to customer
         }
     }

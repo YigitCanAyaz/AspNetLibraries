@@ -17,5 +17,17 @@ namespace FluentValidation.Web.Models
         public IList<Address> Addresses { get; set; }
 
         public Gender Gender { get; set; }
+
+        // To not write extra code, we add get for that
+        //public string GetFullName()
+        //{
+        //    return $"{Name}--{Email}--{Age}";
+        //}
+
+        // Now there's no GetFullName so we need to manually update in CustomerProfile
+        public string FullName2()
+        {
+            return $"{Name}--{Email}--{Age}";
+        }
     }
 }
