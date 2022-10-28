@@ -3,8 +3,8 @@
     public class CustomerDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public int Age { get; set; }
+        public string MyName { get; set; }
+        public string MyEmail { get; set; }
+        public int MyAge { get; set; }
     }
 }
