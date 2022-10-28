@@ -1,0 +1,9 @@
+﻿@model AutoMapper.Web.DTOs.EventDateDto
+
+<form asp-action="Index">
+    <input asp-for="Day" />
+    <input asp-for="Month" />
+    <input asp-for="Year" />
+    <input type="submit" value="Save" />
+</form>
+<h1>@ViewBag.date</h1>
