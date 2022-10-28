@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FluentValidation.Web.Models;
 using AutoMapper;
 using AutoMapper.Web.DTOs;
+using AutoMapper.Web.Models;
 
 namespace FluentValidation.Web.Controllers
 {
@@ -31,7 +32,15 @@ namespace FluentValidation.Web.Controllers
         [HttpGet]
         public IActionResult MappingExample()
         {
-            Customer customer = new Customer { Id = 1, Name = "Yigit Can", Email = "yigitcanayaz2000@gmail.com", Age = 22 };
+            // Getting complex type (from another class to dto)
+            Customer customer = new Customer
+            {
+                Id = 1,
+                Name = "Yigit Can",
+                Email = "yigitcanayaz2000@gmail.com",
+                Age = 22,
+                CreditCard = new CreditCard { Number = "1234", ValidDate = DateTime.Now }
+            };
 
             return Ok(_mapper.Map<CustomerDto>(customer));
         }

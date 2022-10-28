@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper.Web.Models;
 using FluentValidation.Web.Models;
 
 namespace FluentValidation.Web.Models
@@ -18,6 +19,8 @@ namespace FluentValidation.Web.Models
 
         public Gender Gender { get; set; }
 
+        public CreditCard CreditCard { get; set; }
+
         // To not write extra code, we add get for that
         //public string GetFullName()
         //{
@@ -29,5 +32,6 @@ namespace FluentValidation.Web.Models
         {
             return $"{Name}--{Email}--{Age}";
         }
+
     }
 }
