@@ -1,4 +1,5 @@
 using AspNetCoreRateLimit;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// for IpPolicies
+var IpPolicy = app.Services.GetRequiredService<IIpPolicyStore>();
+
+// wait until get response
+IpPolicy.SeedAsync().Wait();
 
 // uses upper features and puts ip rate limit
 app.UseIpRateLimiting();
