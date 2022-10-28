@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using FluentValidation.Web.Models;
 
 namespace FluentValidation.Web.Models
 {
