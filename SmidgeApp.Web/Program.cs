@@ -1,7 +1,11 @@
+using Smidge;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSmidge(builder.Configuration.GetSection("Smidge"));
 
 var app = builder.Build();
 
@@ -19,6 +23,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSmidge(bundle =>
+{
+    // all files under js folder
+    bundle.CreateJs("my-js-bundle", "~/js/");
+
+    bundle.CreateCss("my-css-bundle", "~/css/site.css", "~/lib/bootstrap/dist/css/bootstrap.css");
+});
 
 app.MapControllerRoute(
     name: "default",
