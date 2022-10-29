@@ -1,4 +1,6 @@
 using Smidge;
+using Smidge.Cache;
+using Smidge.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +28,10 @@ app.UseAuthorization();
 
 app.UseSmidge(bundle =>
 {
-    // all files under js folder
-    bundle.CreateJs("my-js-bundle", "~/js/");
+    // all files under js folder + directly update and not save to cache customization method
+    bundle.CreateJs("my-js-bundle", "~/js/")
+    .WithEnvironmentOptions(BundleEnvironmentOptions.Create().ForDebug(builder => builder.EnableCompositeProcessing().EnableFileWatcher()
+    .SetCacheBusterType<AppDomainLifetimeCacheBuster>().CacheControlOptions(enableEtag: false, cacheControlMaxAge:0)).Build());
 
     bundle.CreateCss("my-css-bundle", "~/css/site.css", "~/lib/bootstrap/dist/css/bootstrap.css");
 });
