@@ -11,11 +11,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddOptions(); // reading appsettings.json
 // reading cache service (takes request number to memory)
 builder.Services.AddMemoryCache();
-builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
-builder.Services.Configure<IpRateLimitPolicies>(builder.Configuration.GetSection("IpRateLimitPolicies"));
+//builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+builder.Services.Configure<ClientRateLimitOptions>(builder.Configuration.GetSection("ClientRateLimiting"));
+//builder.Services.Configure<IpRateLimitPolicies>(builder.Configuration.GetSection("IpRateLimitPolicies"));
+builder.Services.Configure<ClientRateLimitPolicies>(builder.Configuration.GetSection("ClientRateLimitPolicies"));
 
 // adds reference
-builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+// builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+builder.Services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
 // builder.Services.AddSingleton<IIpPolicyStore, DistributedCacheIpPolicyStore>(); => for multiple applications
 // adds reference (one reference in all application)
 builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
@@ -38,13 +41,16 @@ if (app.Environment.IsDevelopment())
 }
 
 // for IpPolicies
-var IpPolicy = app.Services.GetRequiredService<IIpPolicyStore>();
+//var IpPolicy = app.Services.GetRequiredService<IIpPolicyStore>();
+var ClientPolicy = app.Services.GetRequiredService<IClientPolicyStore>();
 
 // wait until get response
-IpPolicy.SeedAsync().Wait();
+//IpPolicy.SeedAsync().Wait();
+ClientPolicy.SeedAsync().Wait();
 
 // uses upper features and puts ip rate limit
-app.UseIpRateLimiting();
+//app.UseIpRateLimiting();
+app.UseClientRateLimiting();
 
 app.UseHttpsRedirection();
 
