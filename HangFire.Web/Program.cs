@@ -1,7 +1,12 @@
+using Hangfire;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHangfire(config => config.UseSqlServerStorage(builder.Configuration.GetConnectionString("HangFireConnection")));
+builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
@@ -15,6 +20,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+// mysite.com/hangfire
+app.UseHangfireDashboard("/hangfire");
 
 app.UseRouting();
 
