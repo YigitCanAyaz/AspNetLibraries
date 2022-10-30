@@ -62,6 +62,8 @@ namespace HangFire.Web.Controllers
                 }
 
                 string jobId = BackgroundJobs.DelayedJobs.AddWatermarkJob(newFileName, "Yiğit Can Ayaz");
+
+                BackgroundJobs.ContinuationsJobs.WriteWatermarkStatusJob(jobId, newFileName);
             }
 
             return View();
