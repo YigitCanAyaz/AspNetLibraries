@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMapper.Web", "AutoMappe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RateLimit.API", "RateLimit.API\RateLimit.API.csproj", "{BD45B788-DDAD-4E72-9A68-3699827D8D8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmidgeApp.Web", "SmidgeApp.Web\SmidgeApp.Web.csproj", "{4CB5C052-C995-44C1-8934-72E9BD4CA3CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmidgeApp.Web", "SmidgeApp.Web\SmidgeApp.Web.csproj", "{4CB5C052-C995-44C1-8934-72E9BD4CA3CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFire.Web", "HangFire.Web\HangFire.Web.csproj", "{2EDD2C48-9012-4E73-B88B-38624763F34B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4CB5C052-C995-44C1-8934-72E9BD4CA3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB5C052-C995-44C1-8934-72E9BD4CA3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB5C052-C995-44C1-8934-72E9BD4CA3CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDD2C48-9012-4E73-B88B-38624763F34B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDD2C48-9012-4E73-B88B-38624763F34B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDD2C48-9012-4E73-B88B-38624763F34B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDD2C48-9012-4E73-B88B-38624763F34B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
