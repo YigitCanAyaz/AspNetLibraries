@@ -16,7 +16,7 @@ namespace ErrorHandling.Web.Controllers
             _logger = logger;
         }
 
-        [CustomHandleExceptionFilter(ErrorPage = "CustomError1")]
+        //[CustomHandleExceptionFilter(ErrorPage = "CustomError1")]
         public IActionResult Index()
         {
             int value1 = 5;
@@ -27,7 +27,7 @@ namespace ErrorHandling.Web.Controllers
             return View();
         }
 
-        [CustomHandleExceptionFilter(ErrorPage = "CustomError2")]
+        //[CustomHandleExceptionFilter(ErrorPage = "CustomError2")]
         public IActionResult Privacy()
         {
             throw new FileNotFoundException();
@@ -47,6 +47,11 @@ namespace ErrorHandling.Web.Controllers
         }
 
         public IActionResult CustomError1()
+        {
+            return View();
+        }
+
+        public IActionResult CustomError2()
         {
             return View();
         }

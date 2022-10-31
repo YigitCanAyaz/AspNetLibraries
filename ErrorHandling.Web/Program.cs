@@ -1,7 +1,15 @@
+using ErrorHandling.Web.Filter;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// application level exception handling
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add(new CustomHandleExceptionFilterAttribute() { ErrorPage = "CustomError1" });
+});
 
 var app = builder.Build();
 
