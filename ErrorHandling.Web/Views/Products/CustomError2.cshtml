@@ -1,0 +1,9 @@
+﻿
+@{
+    Exception ex = ViewData["exception"] as Exception;
+    ViewData["Title"] = "CustomError2";
+}
+
+<h1>CustomError2</h1>
+<h2>Error Message: @ex.Message</h2>
+<h3>Error Page: @ViewData["url"]</h3>
