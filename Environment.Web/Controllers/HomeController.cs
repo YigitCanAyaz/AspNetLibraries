@@ -10,6 +10,7 @@ namespace Environment.Web.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
+            // throw new Exception("there is an error...");
             _logger = logger;
         }
 
