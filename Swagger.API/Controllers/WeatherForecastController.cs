@@ -18,6 +18,16 @@ namespace Swagger.API.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// This endpoint lists all the weathers
+        /// </summary>
+        /// <remarks>
+        /// Example: https://localhost:7179/WeatherForecast
+        /// </remarks>
+        /// <returns></returns>
+        /// <response code="404">there are no weathers</response>
+        /// <response code="200">there are weathers</response>
+        [Produces("application/json")]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
