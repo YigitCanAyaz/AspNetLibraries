@@ -6,15 +6,26 @@ namespace Logging.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        // First way to do it
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        // second way to do it
+        private readonly ILoggerFactory _loggerFactory;
+
+        public HomeController(ILoggerFactory loggerFactory)
         {
-            _logger = logger;
+            _loggerFactory = loggerFactory;
         }
 
         public IActionResult Index()
         {
+            var _logger = _loggerFactory.CreateLogger("HomeClass");
+
             _logger.LogTrace("Entered to index page");
             _logger.LogDebug("Entered to index page");
             _logger.LogInformation("Entered to index page");
