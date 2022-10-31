@@ -1,4 +1,6 @@
 ﻿using ErrorHandling.Web.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -25,13 +27,20 @@ namespace ErrorHandling.Web.Controllers
 
         public IActionResult Privacy()
         {
+            throw new FileNotFoundException();
             return View();
         }
 
+        [AllowAnonymous] // to allow non registered user
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var exception = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+
+            ViewBag.path = exception.Path;
+            ViewBag.message = exception.Error.Message;
+
+            return View();
         }
     }
 }

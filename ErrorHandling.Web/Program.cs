@@ -15,8 +15,14 @@ if (!app.Environment.IsDevelopment())
 
 else
 {
+    // app.UseStatusCodePages("text/plain", "There is an error. Status Code: {0}");
+    app.UseStatusCodePages(async context =>
+    {
+        context.HttpContext.Response.ContentType = "text/plain";
+        await context.HttpContext.Response.WriteAsync($"There is an error. StatusCode: {context.HttpContext.Response.StatusCode}");
+    });
     // ASP.NET gives this by default
-    app.UseDeveloperExceptionPage();
+    // app.UseDeveloperExceptionPage();
 }
 
 
