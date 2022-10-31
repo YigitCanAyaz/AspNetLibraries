@@ -13,6 +13,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Writing logger code in Program.cs
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+logger.LogInformation("Application is building...");
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
