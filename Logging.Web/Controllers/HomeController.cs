@@ -15,6 +15,13 @@ namespace Logging.Web.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogTrace("Entered to index page");
+            _logger.LogDebug("Entered to index page");
+            _logger.LogInformation("Entered to index page");
+            _logger.LogWarning("Entered to index page");
+            _logger.LogError("Entered to index page");
+            _logger.LogCritical("Entered to index page");
+
             return View();
         }
 
