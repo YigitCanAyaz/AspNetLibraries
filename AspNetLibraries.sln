@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Web", "NLog.Web\NLog.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagger.API", "Swagger.API\Swagger.API.csproj", "{44534534-4980-4F44-8090-3A092808EABD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Environment.Web", "Environment.Web\Environment.Web.csproj", "{DA1E58C7-27C4-483C-9EEA-EDD9AF2EB0C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{44534534-4980-4F44-8090-3A092808EABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44534534-4980-4F44-8090-3A092808EABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44534534-4980-4F44-8090-3A092808EABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA1E58C7-27C4-483C-9EEA-EDD9AF2EB0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA1E58C7-27C4-483C-9EEA-EDD9AF2EB0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA1E58C7-27C4-483C-9EEA-EDD9AF2EB0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA1E58C7-27C4-483C-9EEA-EDD9AF2EB0C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
