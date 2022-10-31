@@ -15,15 +15,15 @@ if (!app.Environment.IsDevelopment())
 else
 {
     app.UseDatabaseErrorPage();
-    app.UseExceptionHandler(context =>
-    {
-        context.Run(async page =>
-        {
-            page.Response.StatusCode = 500;
-            page.Response.ContentType = "text/html";
-            await page.Response.WriteAsync($"<html><head><h1>There is an error: {page.Response.StatusCode}</h1></head></html>");
-        });
-    });
+    //app.UseExceptionHandler(context =>
+    //{
+    //    context.Run(async page =>
+    //    {
+    //        page.Response.StatusCode = 500;
+    //        page.Response.ContentType = "text/html";
+    //        await page.Response.WriteAsync($"<html><head><h1>There is an error: {page.Response.StatusCode}</h1></head></html>");
+    //    });
+    //}); 
     // app.UseStatusCodePages("text/plain", "There is an error. Status Code: {0}");
     app.UseStatusCodePages(async context =>
     {
