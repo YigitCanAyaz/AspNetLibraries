@@ -8,13 +8,22 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 else
 {
+    app.UseDatabaseErrorPage();
+    app.UseExceptionHandler(context =>
+    {
+        context.Run(async page =>
+        {
+            page.Response.StatusCode = 500;
+            page.Response.ContentType = "text/html";
+            await page.Response.WriteAsync($"<html><head><h1>There is an error: {page.Response.StatusCode}</h1></head></html>");
+        });
+    });
     // app.UseStatusCodePages("text/plain", "There is an error. Status Code: {0}");
     app.UseStatusCodePages(async context =>
     {
@@ -24,7 +33,6 @@ else
     // ASP.NET gives this by default
     // app.UseDeveloperExceptionPage();
 }
-
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
