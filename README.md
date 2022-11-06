@@ -1,3 +1,3 @@
 # AspNetLibraries
 
-This project written in .NET 6.
+This project is written in .NET 6.
